@@ -1,16 +1,10 @@
-from opsdroid.matchers import match_regex
-import logging
-import random
+from opsdroid.matchers import match_crontab
+from opsdroid.message import Message
 
-def setup(opsdroid):
-    logging.debug("Loaded hello module")
 
-@match_regex(r'hi|hello|hey|hallo')
-async def hello(opsdroid, config, message):
-    text = random.choice(["Hi {}", "Hello {}", "Hey {}"]).format(message.user)
-    await message.respond(text)
-
-@match_regex(r'bye( bye)?|see y(a|ou)|au revoir|gtg|I(\')?m off')
-async def goodbye(opsdroid, config, message):
-    text = random.choice(["Bye {}", "See you {}", "Au revoir {}"]).format(message.user)
-    await message.respond(text)
+@match_crontab("00 16 * * 5")
+async def timewatch(opsdroid, config, message):
+    connector = opsdroid.default_connector
+    room = config.get("room", connector.default_room)
+    message = Message("", None, room, connector)
+    await message.respond("https://images.informaticslab.co.uk/misc/ac7891fdcb8fa6dd14fb5b0804eb71e2.png")

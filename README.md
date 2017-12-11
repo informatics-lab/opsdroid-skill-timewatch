@@ -1,6 +1,6 @@
-# opsdroid skill hello
+# opsdroid skill timewatch
 
-A skill for [opsdroid](https://github.com/opsdroid/opsdroid) to respond to hello and goodbye messages.
+A skill for [opsdroid](https://github.com/opsdroid/opsdroid) to nag everyone to fill in their timesheet.
 
 ## Requirements
 
@@ -8,22 +8,10 @@ None.
 
 ## Configuration
 
-None.
-
-## Usage
-
-#### `hello`
-
-Says hello to the user.
-
-> user: hello
->
-> opsdroid: Hi user
-
-#### `goodbye`
-
-Says goodbye to the user.
-
-> user: bye
->
-> opsdroid: Bye user
+```yaml
+skills:
+  - name: 'timewatch'
+    repo: 'https://github.com/met-office-lab/opsdroid-skill-timewatch.git'
+    # Optional
+    room: '#random'  # Room to send reminder to
+```
